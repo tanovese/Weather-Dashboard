@@ -1,0 +1,132 @@
+body {
+    background-color: aliceblue;
+}
+
+#header-container {
+    display: flex;
+    justify-content: center;
+    background-color: navy;
+    margin-bottom: 30px;
+}
+
+#dashboard-title {
+    font-size: 30px;
+    font-weight: bold;
+    color: navajowhite;
+    background-color: navy;
+}
+
+#search-container {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    align-items: center;
+}
+
+#search-title {
+    font-size: 30px;
+    margin: 5px;
+    color: purple;
+}
+
+#form-container {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+#search-bar {
+    margin: 10px;
+    border: 3px solid purple;
+    background-color: skyblue;
+    color: purple;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 15px;
+}
+
+#get-weather-button {
+    margin: 5px;
+    padding: 15px;
+    color: purple;
+    background-color: skyblue;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 3px solid purple;
+    font-size: 16px;
+}
+
+#get-weather-button:hover {
+    background-color: aliceblue;
+    color: skyblue;
+    border: 3px solid skyblue;
+}
+
+#locations-container {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.locations {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5px;
+    background-color: skyblue;
+    color: purple;
+    padding: 15px;
+    font-style: italic;
+    border-radius: 15px;
+    font-size: 16px;
+    border: 3px solid purple;
+}
+
+#selected-city-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#selected-city {
+    font-size: 40px;
+    font-style: italic;
+    color: purple;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+#forecast-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#forecast-title {
+    margin: 10px;
+    font-size: 30px;
+    color: purple;
+    padding: 10px;
+}
+
+#weekly-outlook {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.days {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+    background-color: navy;
+    color: navajowhite;
+    padding: 80px;
+    border-radius: 15px;
+}
