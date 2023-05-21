@@ -15,19 +15,24 @@ function getWeather(event) {
     var city = inputEl.value;
     console.log(city);
 
-    fetch('http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={42653fcad7f3685f0cfbf5d990ef0d44}')
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${cityKey}`)
     .then(response => response.json())
-    console.log('http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={42653fcad7f3685f0cfbf5d990ef0d44}')
+    // console.log('http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={42653fcad7f3685f0cfbf5d990ef0d44}')
     .then(data => {
+        console.log(data)
         var lat = data.lat;
         var lon = data.lon;
-        return fetch(`api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={a53947f76a99feda746fa882e7d4ef45}`)
+        // return fetch("api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={a53947f76a99feda746fa882e7d4ef45}")
     })
-    .then(response => response.json())
-    .then(data => {
-        localStorage.setItem('city', JSON.stringify(data));
-        transferData(data);
+    .catch(error => {
+        console.log(error)
     })
+    
+    // .then(response => response.json())
+    // .then(data => {
+    //     localStorage.setItem('city', JSON.stringify(data));
+    //     transferData(data);
+    // })
 }
 
 function transferData(data) {
