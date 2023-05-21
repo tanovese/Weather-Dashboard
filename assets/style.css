@@ -18,6 +18,14 @@ body {
     margin-left: 3%;
 }
 
+#current-date {
+    color: navajowhite;
+}
+
+#current-time {
+    color: navajowhite;
+}
+
 #search {
     display: flex;
     justify-content: center;
