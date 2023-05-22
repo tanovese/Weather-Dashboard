@@ -29,7 +29,7 @@ body {
 
 #search {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
 }
 
@@ -49,6 +49,7 @@ body {
     font-size: 25px;
     margin: 15px;
     color: navajowhite;
+    font-style: italic;
 }
 
 #form-container {
@@ -141,6 +142,34 @@ body {
     margin-left: 2%;
 }
 
+#current-day-container {
+    border: 3px solid navajowhite;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    background-color: midnightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#current-day {
+    color: navajowhite;
+    align-content: center;
+}
+
+#current-temp {
+    color: navajowhite;
+}
+
+#current-humidity {
+    color: navajowhite;
+}
+
+#current-windspeed {
+    color: navajowhite;
+}
+
 #forecast-container {
     display: flex;
     justify-content: center;
@@ -152,6 +181,7 @@ body {
     font-size: 30px;
     color: midnightblue;
     margin-left: 2%;
+    font-style: italic;
 }
 
 #weekly-outlook {
@@ -163,11 +193,12 @@ body {
 .days {
     display:flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     margin: 5px;
     background-color: midnightblue;
     color: navajowhite;
-    padding: 83px;
+    padding: 50px;
     border-radius: 15px;
     border: 3px solid navajowhite;
 }
