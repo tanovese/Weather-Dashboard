@@ -4,17 +4,18 @@ body {
 
 #header-container {
     display: flex;
-    justify-content: start;
-    background-color: navy;
-    margin-bottom: 10px;
+    justify-content: center;
+    background-color: midnightblue;
+    margin-bottom: 35px;
     border-radius: 15px;
+    border: 3px solid navajowhite;
 }
 
 #dashboard-title {
     font-size: 30px;
     font-weight: bold;
     color: navajowhite;
-    background-color: navy;
+    background-color: midnightblue;
     margin-left: 3%;
 }
 
@@ -28,7 +29,7 @@ body {
 
 #search {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
 }
 
@@ -38,13 +39,16 @@ body {
     flex-direction: column;
     align-items: center;
     align-content: center;
-    padding: 10px;
+    padding: 5px;
+    border: 3px solid navajowhite;
+    border-radius: 15px;
+    background-color: midnightblue;
 }
 
 #search-title {
     font-size: 25px;
     margin: 15px;
-    color: midnightblue;
+    color: navajowhite;
 }
 
 #form-container {
@@ -55,7 +59,7 @@ body {
 
 #search-bar {
     margin: 15px;
-    border: 3px solid skyblue;
+    border: 3px solid navajowhite;
     background-color: aliceblue;
     color: midnightblue;
     cursor: pointer;
@@ -67,12 +71,12 @@ body {
 #get-weather-button {
     margin: 15px;
     padding: 15px;
-    color: aliceblue;
+    color: navajowhite;
     background-color: skyblue;
     border-radius: 15px;
     font-weight: bold;
     cursor: pointer;
-    border: 3px solid skyblue;
+    border: 3px solid navajowhite;
     font-size: 16px;
 }
 
@@ -106,10 +110,10 @@ body {
     align-content: center;
     margin: 5px;
     background-color: skyblue;
-    color: aliceblue;
+    color: navajowhite;
     padding: 2px;
     border-radius: 15px;
-    border: 3px solid skyblue;
+    border: 3px solid navajowhite;
     cursor: pointer;
     width: 70%;
 }
@@ -123,9 +127,9 @@ body {
 
 #selected-city-container {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     flex-direction: column;
-    align-items: left;
+    align-items: start;
 }
 
 #selected-city-title {
@@ -139,9 +143,9 @@ body {
 
 #forecast-container {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     flex-direction: column;
-    align-items: left;
+    align-items: start;
 }
 
 #forecast-title {
@@ -161,9 +165,9 @@ body {
     justify-content: center;
     flex-direction: column;
     margin: 5px;
-    background-color: navy;
+    background-color: midnightblue;
     color: navajowhite;
-    padding: 70px;
+    padding: 83px;
     border-radius: 15px;
-    border: 3px solid skyblue;
+    border: 3px solid navajowhite;
 }

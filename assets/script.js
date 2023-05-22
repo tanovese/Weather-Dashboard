@@ -40,15 +40,19 @@ function getWeather(event) {
 
 function geoCoordinates(lat, lon) {
     console.log("in new function", lat, lon);
-    fetch(`api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${defaultKey}`)
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${defaultKey}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        console.log(data);
+        console.log(data.list[0].main.humidity);
+        transferData(data);
     })
 }
 
-// function transferData(data) {
-//     console.log(data);
-// }
+function transferData(data) {
+    console.log("transfer data", data);
+    var selectedCity= document.getElementById("selected-city-title");
+    data.city.name.value= selectedCity.innerHTML;
+}
 
 
