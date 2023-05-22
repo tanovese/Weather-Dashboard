@@ -52,7 +52,10 @@ function geoCoordinates(lat, lon) {
 function transferData(data) {
     console.log("transfer data", data);
     var selectedCity= document.getElementById("selected-city-title");
-    data.city.name.value= selectedCity.innerHTML;
+    selectedCity.textContent=data.city.name;
+    localStorage.setItem('selectedCity', selectedCity.value);
+    //     transferData(data);
+    // selectedCity.textContent=inputEl.value;
 }
 
 
