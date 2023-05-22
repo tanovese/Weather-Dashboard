@@ -53,7 +53,14 @@ function transferData(data) {
     console.log("transfer data", data);
     var selectedCity= document.getElementById("selected-city-title");
     selectedCity.textContent=data.city.name;
-    localStorage.setItem('selectedCity', selectedCity.value);
+    localStorage.setItem('selectedCity', selectedCity.textContent);
+
+    var searchHistory= document.querySelector(".locations");
+    var input=localStorage.getItem('selectedCity');
+
+    searchHistory.children.value=input;
+
+
     //     transferData(data);
     // selectedCity.textContent=inputEl.value;
 }
