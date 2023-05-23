@@ -191,19 +191,32 @@ function transferData(data) {
     // searchHistory.value=input;
     
     // Now we need to start a function for the localStorage storing and display
-    loadFromStorage();
+    addCity();
 }
 
-function loadFromStorage () {
+function addCity(){
+    const savedCity = localStorage.getItem("selectedCity");
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("locations");
+
+    const newH3 = document.createElement("h3");
+    newH3.textContent = savedCity;
+
+    newDiv.appendChild(newH3)
+    const locationsContainer = document.getElementById("locations-container");
+    locationsContainer.appendChild(newDiv)
+}
+
+function loadFromStorage() {
 
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     for (var i = 0; i < searchHistory.length; i++) {
-        const savedCity = localStorage.getItem("selectedCity");
+        // const savedCity = localStorage.getItem("selectedCity");
         const newDiv = document.createElement("div");
         newDiv.classList.add("locations");
 
         const newH3 = document.createElement("h3");
-        newH3.textContent = savedCity;
+        newH3.textContent = searchHistory[i];
 
         newDiv.appendChild(newH3)
         const locationsContainer = document.getElementById("locations-container");
@@ -215,3 +228,19 @@ function loadFromStorage () {
 }
 
 loadFromStorage();
+
+var clearSearch = document.getElementById("clear-search-button");
+
+clearSearch.addEventListener("click", clearStorage);
+
+function clearStorage() {
+    localStorage.clear();
+}
+
+var selectCityHistory = document.querySelector("locations");
+
+selectCityHistory.addEventListener("click", renderCityHistory);
+
+function renderCityHistory() {
+    newH3.textContent
+}
