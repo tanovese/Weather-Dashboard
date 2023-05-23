@@ -4,11 +4,13 @@ var searchButton= document.getElementById("get-weather-button");
 const cityUrl= "http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}"
 const defaultUrl= "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}"
 var inputEl= document.getElementById("search-bar");
-// var city = inputEl.value;
-// console.log(city);
 
+
+// Get weather button event listener will run the getWeather function
 searchButton.addEventListener("click", getWeather)
 
+// getWeather function uses the city api, then we will use the lat and lon from that data
+// and transfer it to another function called geoCoordinates, and getCurrent
 function getWeather(event) {
     event.preventDefault();
     // var city= element.getTextContent()
@@ -39,6 +41,9 @@ function getWeather(event) {
     // })
 }
 
+
+// The geoCoordinates function uses the lat and lon data from the getWeather fetch
+// We use the lat and lon to fetch more data, and that is for the 5 day forecast
 function geoCoordinates(lat, lon) {
     console.log("in new function", lat, lon);
     fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${defaultKey}&units=imperial`)
@@ -46,20 +51,30 @@ function geoCoordinates(lat, lon) {
     .then(data => {
         console.log(data);
         console.log(data.list[0].main.humidity);
+        // Now we are going to transfer this data from the 5 day forecase to another
+        // function called transferData
         transferData(data);
     })
 }
 
+// The getCurrent data takes the lat and lon from the getWeather data fetch
+// We use those parameters to fetch more data, specifically the current day weather data
 function getCurrent(lat, lon) {
     console.log("in new function", lat, lon);
     fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${defaultKey}&units=imperial`)
     .then(response => response.json())
     .then(data => {
         console.log(data);
+
+        // Now we are going to transfer that data to a function
+        // called transferCurrentData
         transferCurrentData(data)
     })
 }
 
+// The transferCurrentData function takes the data from the getCurrent function
+// and this data is used to apply it to the textContent of our given id's
+// now we can pull the data we want and apply it to our page
 function transferCurrentData(data) {
 
     //render data, current day
@@ -71,11 +86,14 @@ function transferCurrentData(data) {
 
     currentIcon.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
     currentDay.textContent = moment(data.dt * 1000).format("dddd, MMM D")
-    currentTemp.textContent = "Temp: " + data.main.temp + " Degrees F"
-    currentHumidity.textContent = "Humidity: " + data.main.humidity
-    currentWind.textContent = "Wind Speed: " + data.wind.speed
+    currentTemp.textContent = "Temp: " + data.main.temp + " ° F"
+    currentHumidity.textContent = "Humidity: " + data.main.humidity + " %"
+    currentWind.textContent = "Wind Speed: " + data.wind.speed + " MPH"
 }
 
+// The transferData function takes data from the geoCoordinates function
+// we use that data by putting in a const array
+// then we are referencing the array and displaying the data we want in our given id's
 function transferData(data) {
     console.log("transfer data", data);
 
@@ -96,9 +114,9 @@ function transferData(data) {
 
     day1Day.textContent = moment(selectedData[0].dt * 1000).format("dddd, MMM D")
     day1Icon.src = "https://openweathermap.org/img/wn/" + selectedData[0].weather[0].icon + "@2x.png"
-    day1Temp.textContent = "Temp: " + selectedData[0].main.temp + " Degrees F"
-    day1Humidity.textContent="Humidity: " + selectedData[0].main.humidity
-    day1Wind.textContent="Wind Speed: " + selectedData[0].wind.speed
+    day1Temp.textContent = "Temp: " + selectedData[0].main.temp + " ° F"
+    day1Humidity.textContent="Humidity: " + selectedData[0].main.humidity + " %"
+    day1Wind.textContent="Wind Speed: " + selectedData[0].wind.speed + " MPH"
 
     // render the data, day 2
     const day2Day = document.getElementById("day2-day")
@@ -109,9 +127,9 @@ function transferData(data) {
     
     day2Day.textContent = moment(selectedData[1].dt * 1000).format("dddd, MMM D")
     day2Icon.src = "https://openweathermap.org/img/wn/" + selectedData[1].weather[0].icon + "@2x.png"
-    day2Temp.textContent = "Temp: " + selectedData[1].main.temp + " Degrees F"
-    day2Humidity.textContent="Humidity: " + selectedData[1].main.humidity
-    day2Wind.textContent="Wind Speed: " + selectedData[1].wind.speed
+    day2Temp.textContent = "Temp: " + selectedData[1].main.temp + " ° F"
+    day2Humidity.textContent="Humidity: " + selectedData[1].main.humidity + " %"
+    day2Wind.textContent="Wind Speed: " + selectedData[1].wind.speed + " MPH"
 
     // render the data, day 3
      const day3Day = document.getElementById("day3-day")
@@ -122,9 +140,9 @@ function transferData(data) {
         
      day3Day.textContent = moment(selectedData[2].dt * 1000).format("dddd, MMM D")
      day3Icon.src = "https://openweathermap.org/img/wn/" + selectedData[2].weather[0].icon + "@2x.png"
-     day3Temp.textContent = "Temp: " + selectedData[2].main.temp + " Degrees F"
-     day3Humidity.textContent="Humidity: " + selectedData[2].main.humidity
-     day3Wind.textContent="Wind Speed: " + selectedData[2].wind.speed
+     day3Temp.textContent = "Temp: " + selectedData[2].main.temp + " ° F"
+     day3Humidity.textContent="Humidity: " + selectedData[2].main.humidity + " %"
+     day3Wind.textContent="Wind Speed: " + selectedData[2].wind.speed + " MPH"
 
     // render the data, day 4
     const day4Day = document.getElementById("day4-day")
@@ -135,9 +153,9 @@ function transferData(data) {
             
     day4Day.textContent = moment(selectedData[3].dt * 1000).format("dddd, MMM D")
     day4Icon.src = "https://openweathermap.org/img/wn/" + selectedData[3].weather[0].icon + "@2x.png"
-    day4Temp.textContent = "Temp: " + selectedData[3].main.temp + " Degrees F"
-    day4Humidity.textContent="Humidity: " + selectedData[3].main.humidity
-    day4Wind.textContent="Wind Speed: " + selectedData[3].wind.speed
+    day4Temp.textContent = "Temp: " + selectedData[3].main.temp + " ° F"
+    day4Humidity.textContent="Humidity: " + selectedData[3].main.humidity + " %"
+    day4Wind.textContent="Wind Speed: " + selectedData[3].wind.speed + " MPH"
 
     // render the data, day 5
     const day5Day = document.getElementById("day5-day")
@@ -148,24 +166,34 @@ function transferData(data) {
                 
     day5Day.textContent = moment(selectedData[4].dt * 1000).format("dddd, MMM D")
     day5Icon.src = "https://openweathermap.org/img/wn/" + selectedData[4].weather[0].icon + "@2x.png"
-    day5Temp.textContent = "Temp: " + selectedData[4].main.temp + " Degrees F"
-    day5Humidity.textContent="Humidity: " + selectedData[4].main.humidity
-    day5Wind.textContent="Wind Speed: " + selectedData[4].wind.speed
+    day5Temp.textContent = "Temp: " + selectedData[4].main.temp + " ° F"
+    day5Humidity.textContent="Humidity: " + selectedData[4].main.humidity + " %"
+    day5Wind.textContent="Wind Speed: " + selectedData[4].wind.speed + " MPH"
 
-
+    // We are able to reference the data city name and apply it to the
+    // selected city title
     var selectedCity= document.getElementById("selected-city-title");
     selectedCity.textContent=data.city.name;
+    var previousSelectedCity=localStorage.getItem('selectedCity');
     localStorage.setItem('selectedCity', selectedCity.textContent);
 
-    var searchHistory= document.querySelector(".locations");
-    var input=localStorage.getItem('selectedCity');
+    console.log(previousSelectedCity);
+    console.log(selectedCity.textContent);
 
-    searchHistory.value=input;
+    const searchHistory = [selectedCity.textContent,
+        previousSelectedCity]
+
+        localStorage.setItem('searchHistory', searchHistory);
+        console.log(searchHistory);
+
+    // var searchHistory= document.querySelector(".locations");
+   
+
+    // searchHistory.value=input;
     
+    // Now we need to start a function for the localStorage storing and display
     loadFromStorage();
 }
-
-
 
 function loadFromStorage () {
     const savedCity = localStorage.getItem("selectedCity");
@@ -185,6 +213,5 @@ function loadFromStorage () {
     const locationsContainer = document.getElementById("locations-container");
     locationsContainer.appendChild(newDiv)
 }
-
 
 loadFromStorage();
