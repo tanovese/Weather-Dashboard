@@ -174,21 +174,20 @@ function transferData(data) {
     // selected city title
     var selectedCity= document.getElementById("selected-city-title");
     selectedCity.textContent=data.city.name;
+
     var previousSelectedCity=localStorage.getItem('selectedCity');
     localStorage.setItem('selectedCity', selectedCity.textContent);
 
     console.log(previousSelectedCity);
     console.log(selectedCity.textContent);
 
-    const searchHistory = [selectedCity.textContent,
-        previousSelectedCity]
-
-        localStorage.setItem('searchHistory', searchHistory);
-        console.log(searchHistory);
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    searchHistory.push(data.city.name);
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    console.log(searchHistory);
 
     // var searchHistory= document.querySelector(".locations");
    
-
     // searchHistory.value=input;
     
     // Now we need to start a function for the localStorage storing and display
@@ -196,22 +195,23 @@ function transferData(data) {
 }
 
 function loadFromStorage () {
-    const savedCity = localStorage.getItem("selectedCity");
 
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    for (var i = 0; i < searchHistory.length; i++) {
+        const savedCity = localStorage.getItem("selectedCity");
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("locations");
+
+        const newH3 = document.createElement("h3");
+        newH3.textContent = savedCity;
+
+        newDiv.appendChild(newH3)
+        const locationsContainer = document.getElementById("locations-container");
+        locationsContainer.appendChild(newDiv)
+    }
     //<div class="locations">
     //    <h3>savedCity</h3>
     //</div>
-
-    const newDiv = document.createElement("div");
-    newDiv.classList.add("locations");
-
-    const newH3 = document.createElement("h3");
-    newH3.textContent = savedCity;
-
-    newDiv.appendChild(newH3)
-
-    const locationsContainer = document.getElementById("locations-container");
-    locationsContainer.appendChild(newDiv)
 }
 
 loadFromStorage();
