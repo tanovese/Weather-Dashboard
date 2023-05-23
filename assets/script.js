@@ -5,7 +5,6 @@ const cityUrl= "http://api.openweathermap.org/geo/1.0/direct?q={city name},{stat
 const defaultUrl= "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}"
 var inputEl= document.getElementById("search-bar");
 
-
 // Get weather button event listener will run the getWeather function
 searchButton.addEventListener("click", getWeather)
 
@@ -215,7 +214,7 @@ function loadFromStorage() {
         const newDiv = document.createElement("div");
         newDiv.classList.add("locations");
 
-        const newH3 = document.createElement("h3");
+        newH3 = document.createElement("h3");
         newH3.textContent = searchHistory[i];
 
         newDiv.appendChild(newH3)
@@ -237,10 +236,13 @@ function clearStorage() {
     localStorage.clear();
 }
 
-var selectCityHistory = document.querySelector("locations");
+// var selectCityHistory = document.querySelector("locations");
 
-selectCityHistory.addEventListener("click", renderCityHistory);
+// selectCityHistory.addEventListener("click", renderCityHistory);
+
+newH3=addEventListener("click", renderCityHistory);
 
 function renderCityHistory() {
-    newH3.textContent
+    city=newH3.textContent;
+    getWeather(city);
 }
