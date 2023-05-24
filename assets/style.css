@@ -238,3 +238,11 @@ body {
 #day1-day, #day2-day, #day3-day, #day4-day, #day5-day {
     font-size: 20px;
 }
+
+@media screen and (max-width:1470px){
+
+    .days {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

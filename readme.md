@@ -21,7 +21,7 @@ Link:
 
 ## Credits
 
-The completion of this project was done with the help of Joem Casusi, a Rutgers coding tutor. Specifically, he helped with the transferData and the transferCurrentData functions where weather data from the API is displayed to the html id's. Further completion of the project was done with the help of Rutgers' BCS tutors.
+The completion of this project was done with the help of Joem Casusi, a Rutgers coding tutor. Specifically, he helped with the transferData and the transferCurrentData functions where weather data from the API is displayed to the html id's. Further completion of the project was done with the help of Rutgers' BCS learning assistants.
 
 ## License
 

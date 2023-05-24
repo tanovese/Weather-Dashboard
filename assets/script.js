@@ -214,8 +214,9 @@ function loadFromStorage() {
         const newDiv = document.createElement("div");
         newDiv.classList.add("locations");
 
-        newH3 = document.createElement("h3");
+        var newH3 = document.createElement("h3");
         newH3.textContent = searchHistory[i];
+        newH3.addEventListener("click", renderCityHistory);
 
         newDiv.appendChild(newH3)
         const locationsContainer = document.getElementById("locations-container");
@@ -240,9 +241,31 @@ function clearStorage() {
 
 // selectCityHistory.addEventListener("click", renderCityHistory);
 
-newH3=addEventListener("click", renderCityHistory);
+function renderCityHistory(event) {
+    event.preventDefault();
+    console.log(event.target.textContent, "event.target")
+    // console.log(city, "city");
+    var cityHistory=event.target.textContent;
+    getWeatherHistory(cityHistory);
+}
 
-function renderCityHistory() {
-    city=newH3.textContent;
-    getWeather(city);
+function getWeatherHistory(cityHistory) {
+    console.log(cityHistory, "city history");
+
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityHistory}&appid=${cityKey}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var lat = data[0].lat;
+        var lon = data[0].lon;
+        console.log(lat)
+        console.log(lon)
+
+        geoCoordinates(lat, lon);
+        getCurrent(lat, lon)
+    })
+    .catch(error => {
+        console.log(error);
+
+    })
 }
