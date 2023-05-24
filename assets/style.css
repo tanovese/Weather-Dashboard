@@ -6,7 +6,7 @@ body {
     display: flex;
     justify-content: center;
     background-color: midnightblue;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     border-radius: 15px;
     border: 3px solid navajowhite;
 }
@@ -29,8 +29,8 @@ body {
 
 #search {
     display: flex;
-    justify-content: center;
-    flex-direction: row;
+    /* justify-content: center;
+    flex-direction: row; */
 }
 
 #search-container {
@@ -148,11 +148,18 @@ body {
     font-style: italic;
 }
 
-#selected-city-container {
+#weather-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: start;
+    padding: 15px;
+}
+
+#selected-city-container {
+    align-items: start;
+    align-content: center;
+    flex-direction: column;
 }
 
 #selected-city-title {
@@ -161,10 +168,11 @@ body {
     color: midnightblue;
     font-weight: bold;
     border-radius: 15px;
-    margin-left: 2%;
+    margin-left: 6%;
 }
 
 #current-day-container {
+    display: flex;
     border: 3px solid navajowhite;
     padding: 20px;
     margin: 5px;
@@ -228,7 +236,7 @@ body {
     margin: 5px;
     background-color: midnightblue;
     color: navajowhite;
-    padding: 25px;
+    padding: 20px;
     height: fit-content;
     width: fit-content;
     border-radius: 15px;

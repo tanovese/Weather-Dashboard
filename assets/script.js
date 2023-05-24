@@ -12,34 +12,26 @@ searchButton.addEventListener("click", getWeather)
 // and transfer it to another function called geoCoordinates, and getCurrent
 function getWeather(event) {
     event.preventDefault();
-    // var city= element.getTextContent()
     var city = inputEl.value;
-    console.log(city);
+    console.log("City", city);
 
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${cityKey}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        console.log("Data", data)
         var lat = data[0].lat;
         var lon = data[0].lon;
-        console.log(lat)
-        console.log(lon)
+        console.log("Lat", lat)
+        console.log("Lon", lon)
 
-        // return fetch("api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={a53947f76a99feda746fa882e7d4ef45}")
         geoCoordinates(lat, lon);
         getCurrent(lat, lon)
     })
     .catch(error => {
-        console.log(error);
+        console.log("Error check",error);
 
     })
-    // .then(response => response.json())
-    // .then(data => {
-    //     localStorage.setItem('city', JSON.stringify(data));
-    //     transferData(data);
-    // })
 }
-
 
 // The geoCoordinates function uses the lat and lon data from the getWeather fetch
 // We use the lat and lon to fetch more data, and that is for the 5 day forecast
@@ -48,8 +40,8 @@ function geoCoordinates(lat, lon) {
     fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${defaultKey}&units=imperial`)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-        console.log(data.list[0].main.humidity);
+        console.log("Data again", data);
+        console.log("Humidity check", data.list[0].main.humidity);
         // Now we are going to transfer this data from the 5 day forecase to another
         // function called transferData
         transferData(data);
@@ -63,7 +55,7 @@ function getCurrent(lat, lon) {
     fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${defaultKey}&units=imperial`)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        console.log("Data 3rd check", data);
 
         // Now we are going to transfer that data to a function
         // called transferCurrentData
@@ -94,7 +86,7 @@ function transferCurrentData(data) {
 // we use that data by putting in a const array
 // then we are referencing the array and displaying the data we want in our given id's
 function transferData(data) {
-    console.log("transfer data", data);
+    console.log("Transfer data check", data);
 
     const selectedData = [
         data.list[5],
@@ -174,34 +166,36 @@ function transferData(data) {
     var selectedCity= document.getElementById("selected-city-title");
     selectedCity.textContent=data.city.name;
 
+    // Now we need to start local storage setting and getting
     var previousSelectedCity=localStorage.getItem('selectedCity');
     localStorage.setItem('selectedCity', selectedCity.textContent);
 
-    console.log(previousSelectedCity);
-    console.log(selectedCity.textContent);
+    console.log("Previous selected city check", previousSelectedCity);
+    console.log("Selected city textContent check", selectedCity.textContent);
 
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     searchHistory.push(data.city.name);
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-    console.log(searchHistory);
+    console.log("Search history check", searchHistory);
 
-    // var searchHistory= document.querySelector(".locations");
-   
-    // searchHistory.value=input;
-    
-    // Now we need to start a function for the localStorage storing and display
-    addCity();
+    // Check if previous selected city is inside the history;
+    if(previousSelectedCity === searchHistory.value) {
+        return;
+    } else {
+        addCity();
+    }
+    // Now we need to start a function for the localStorage storing and display 
 }
 
 function addCity(){
     const savedCity = localStorage.getItem("selectedCity");
+    
     const newDiv = document.createElement("div");
     newDiv.classList.add("locations");
-
     const newH3 = document.createElement("h3");
     newH3.textContent = savedCity;
     newH3.addEventListener("click", renderCityHistory);
-
+    
     newDiv.appendChild(newH3)
     const locationsContainer = document.getElementById("locations-container");
     locationsContainer.appendChild(newDiv)
@@ -211,7 +205,6 @@ function loadFromStorage() {
 
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     for (var i = 0; i < searchHistory.length; i++) {
-        // const savedCity = localStorage.getItem("selectedCity");
         const newDiv = document.createElement("div");
         newDiv.classList.add("locations");
 
@@ -223,35 +216,30 @@ function loadFromStorage() {
         const locationsContainer = document.getElementById("locations-container");
         locationsContainer.appendChild(newDiv)
     }
-    //<div class="locations">
-    //    <h3>savedCity</h3>
-    //</div>
 }
 
 loadFromStorage();
 
+// Var to clear searches
 var clearSearch = document.getElementById("clear-search-button");
 
+// Event listener for clear storage button
 clearSearch.addEventListener("click", clearStorage);
 
+// Clear storage function
 function clearStorage() {
     localStorage.clear();
 }
 
-// var selectCityHistory = document.querySelector("locations");
-
-// selectCityHistory.addEventListener("click", renderCityHistory);
-
 function renderCityHistory(event) {
     event.preventDefault();
-    console.log(event.target.textContent, "event.target")
-    // console.log(city, "city");
+    console.log("Event target textContent check", event.target.textContent)
     var cityHistory=event.target.textContent;
     getWeatherHistory(cityHistory);
 }
 
 function getWeatherHistory(cityHistory) {
-    console.log(cityHistory, "city history");
+    console.log("City history check", cityHistory);
 
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityHistory}&appid=${cityKey}`)
     .then(response => response.json())
@@ -259,20 +247,19 @@ function getWeatherHistory(cityHistory) {
         console.log(data)
         var lat = data[0].lat;
         var lon = data[0].lon;
-        console.log(lat)
-        console.log(lon)
+        console.log("Lat again check", lat)
+        console.log("Lon again check", lon)
 
         geoCoordinates(lat, lon);
         getCurrent(lat, lon)
     })
     .catch(error => {
-        console.log(error);
-
+        console.log("Error check again", error);
     })
 }
 
 //bugs:
 //when you click the city history too many times, the formatting changes
 //when you click city history, it creates another button for that city
-//getWeatherHistory console log does not show up
-//renderCityHistory console log does not show up
+//getWeatherHistory console log does not show up?
+//renderCityHistory console log does not show up?
