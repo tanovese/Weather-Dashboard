@@ -200,6 +200,7 @@ function addCity(){
 
     const newH3 = document.createElement("h3");
     newH3.textContent = savedCity;
+    newH3.addEventListener("click", renderCityHistory);
 
     newDiv.appendChild(newH3)
     const locationsContainer = document.getElementById("locations-container");
@@ -269,3 +270,9 @@ function getWeatherHistory(cityHistory) {
 
     })
 }
+
+//bugs:
+//when you click the city history too many times, the formatting changes
+//when you click city history, it creates another button for that city
+//getWeatherHistory console log does not show up
+//renderCityHistory console log does not show up
