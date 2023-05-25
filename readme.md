@@ -2,7 +2,7 @@
 
 ## Description
 
-The Weather Dashboard is a user-friendly application that users can use to search for weather data by city name. The dashboard utilizes the OpenWeather API to provide weather data about the current day and the 5-day forecast. Users will be able to see data including the temperature, humidity %, and the wind speed miles per hour for each day.
+The Weather Dashboard is a user-friendly application where users can search for current weather data by city name. The dashboard uses the OpenWeather API to provide data of the current day and also provides the 5-day weather forecast. Users will be able to see the temperature, humidity %, the wind speed miles per hour, and their city search history.
 
 ## Installation
 
@@ -17,7 +17,7 @@ Search by city name to see the temperature in degrees Farenheit, the humidity %,
 ![](./images/Screenshot%202023-05-23%20153317.png)
 ![](./images/Screenshot%202023-05-23%20153251.png)
 
-Link:
+Link: https://tanovese.github.io/Weather-Dashboard/
 
 ## Credits
 
