@@ -274,9 +274,3 @@ function getWeatherHistory(cityHistory) {
         console.log("Error check again", error);
     })
 }
-
-//bugs:
-//when you click the city history too many times, the formatting changes
-//when you click city history, it creates another button for that city
-//getWeatherHistory console log does not show up?
-//renderCityHistory console log does not show up?
