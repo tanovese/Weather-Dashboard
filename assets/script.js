@@ -85,6 +85,7 @@ function transferCurrentData(data) {
 // The transferData function takes data from the geoCoordinates function
 // we use that data by putting in a const array
 // then we are referencing the array and displaying the data we want in our given id's
+
 function transferData(data) {
     console.log("Transfer data check", data);
 
@@ -174,22 +175,24 @@ function transferData(data) {
     console.log("Selected city textContent check", selectedCity.textContent);
 
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    searchHistory.push(data.city.name);
-    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-    console.log("Search history check", searchHistory);
+    
+  
+    console.log("Input value check", inputEl.value)
+    console.log("SelectedCity.textContent check", selectedCity.textContent)
 
     // Check if previous selected city is inside the history;
-    if(previousSelectedCity === searchHistory.value) {
+    if(searchHistory.includes(selectedCity.textContent)) {
         return;
     } else {
         addCity();
     }
-    // Now we need to start a function for the localStorage storing and display 
-}
+    searchHistory.push(data.city.name);
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    console.log("Search history check", searchHistory);
+    }
 
 function addCity(){
     const savedCity = localStorage.getItem("selectedCity");
-    
     const newDiv = document.createElement("div");
     newDiv.classList.add("locations");
     const newH3 = document.createElement("h3");
@@ -199,6 +202,20 @@ function addCity(){
     newDiv.appendChild(newH3)
     const locationsContainer = document.getElementById("locations-container");
     locationsContainer.appendChild(newDiv)
+
+    // if(savedCity === inputEl.value) {
+    //     const newDiv = document.createElement("div");
+    //     newDiv.classList.add("locations");
+    //     const newH3 = document.createElement("h3");
+    //     newH3.textContent = savedCity;
+    //     newH3.addEventListener("click", renderCityHistory);
+        
+    //     newDiv.appendChild(newH3)
+    //     const locationsContainer = document.getElementById("locations-container");
+    //     locationsContainer.appendChild(newDiv)
+    // } else {
+    // return;
+    // }
 }
 
 function loadFromStorage() {
