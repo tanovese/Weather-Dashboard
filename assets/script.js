@@ -1,7 +1,7 @@
 var defaultKey= "a53947f76a99feda746fa882e7d4ef45"
 var cityKey= "42653fcad7f3685f0cfbf5d990ef0d44"
 var searchButton= document.getElementById("get-weather-button");
-const cityUrl= "http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}"
+const cityUrl= "https://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}"
 const defaultUrl= "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}"
 var inputEl= document.getElementById("search-bar");
 
@@ -15,7 +15,7 @@ function getWeather(event) {
     var city = inputEl.value;
     console.log("City", city);
 
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${cityKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${cityKey}`)
     .then(response => response.json())
     .then(data => {
         console.log("Data", data)
@@ -37,7 +37,7 @@ function getWeather(event) {
 // We use the lat and lon to fetch more data, and that is for the 5 day forecast
 function geoCoordinates(lat, lon) {
     console.log("in new function", lat, lon);
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${defaultKey}&units=imperial`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${defaultKey}&units=imperial`)
     .then(response => response.json())
     .then(data => {
         console.log("Data again", data);
@@ -52,7 +52,7 @@ function geoCoordinates(lat, lon) {
 // We use those parameters to fetch more data, specifically the current day weather data
 function getCurrent(lat, lon) {
     console.log("in new function", lat, lon);
-    fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${defaultKey}&units=imperial`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${defaultKey}&units=imperial`)
     .then(response => response.json())
     .then(data => {
         console.log("Data 3rd check", data);
@@ -202,20 +202,6 @@ function addCity(){
     newDiv.appendChild(newH3)
     const locationsContainer = document.getElementById("locations-container");
     locationsContainer.appendChild(newDiv)
-
-    // if(savedCity === inputEl.value) {
-    //     const newDiv = document.createElement("div");
-    //     newDiv.classList.add("locations");
-    //     const newH3 = document.createElement("h3");
-    //     newH3.textContent = savedCity;
-    //     newH3.addEventListener("click", renderCityHistory);
-        
-    //     newDiv.appendChild(newH3)
-    //     const locationsContainer = document.getElementById("locations-container");
-    //     locationsContainer.appendChild(newDiv)
-    // } else {
-    // return;
-    // }
 }
 
 function loadFromStorage() {
