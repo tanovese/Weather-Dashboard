@@ -221,6 +221,9 @@ function loadFromStorage() {
     }
 }
 
+localStorage.setItem("key")
+
+
 loadFromStorage();
 
 // Var to clear searches
